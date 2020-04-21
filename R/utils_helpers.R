@@ -48,11 +48,10 @@ get_config <- function(){
 
 ## Apply the function to get the config_File
 config <- get_config()
-# Create Firebase config
-firebase::create_config(api_key = config$database$apiKey, project_id = config$database$projectId)
-databaseURL <- config$database$databaseURL
-
-
+if(config$database$apiKey != "" && config$database$projectId != "" && config$database$databaseURL != "") {
+  firebase::create_config(api_key = config$database$apiKey, project_id = config$database$projectId)
+  databaseURL <- config$database$databaseURL
+}
 
 
 ########
