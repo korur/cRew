@@ -3,18 +3,55 @@
 ccc = c('fever', 'cough', 'breath', 'home', "goout", 'gowork', 'mask', 'lat', 'long', 'timecon', 'usercon')
 
 
-# accessing config file from local or remote linux. For personal use case Remove this use as in the following "#"
+# Setting up config file
+# >> fill in database$apiKey, database$projectId and database$databaseURL in firebase.yml
 
-if (file.exists("~/workingdirectory/CoronaOutbreak/douhavefever/_firebase.yml")) { 
-  config_file <- yaml::read_yaml("~/workingdirectory/CoronaOutbreak/douhavefever/_firebase.yml") 
-} else { 
-  config_file <- yaml::read_yaml("/etc/_firebase.yml")
+#' Has Config
+#' 
+#' Ensure config file is present.
+#' 
+#' @keywords internal
+has_config <- function(){
+  has_config <- file.exists("firebase.yml")
+  if(!has_config)
+    stop(
+      "Missing config file, create_config", call. = FALSE
+    )
+  invisible()
 }
 
-# Create config
-# config_file <- yaml::read_yaml("config_file.yml")   >> fill in database$apiKey, database$projectId and database$databaseURL
-firebase::create_config(api_key = config_file$database$apiKey, project_id = config_file$database$projectId)
-databaseURL <- config_file$database$databaseURL
+#' Check config
+#' 
+#' Checks that config is valid.
+#' 
+#' @keywords internal
+#' # >> fill in database$apiKey, database$projectId and database$databaseURL in firebase.yml
+check_config <- function(config){
+  if(config$database$apiKey == "" && config$database$projectID == "" && config$database$databaseURL == "")
+    stop("Complete the config file: firebase.yml")
+  invisible()
+}
+
+
+#' Retrieve Config
+#' 
+#' Retrieves config file.
+#' 
+#' @keywords internal
+get_config <- function(){
+  has_config()
+  config <- yaml::read_yaml("firebase.yml")
+  check_config(config)
+  return(config)
+}
+
+## Apply the function to get the config_File
+config <- get_config()
+# Create Firebase config
+firebase::create_config(api_key = config$database$apiKey, project_id = config$database$projectId)
+databaseURL <- config$database$databaseURL
+
+
 
 
 ########
