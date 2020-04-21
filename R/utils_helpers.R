@@ -27,9 +27,10 @@ has_config <- function(){
 #' @keywords internal
 #' # >> fill in database$apiKey, database$projectId and database$databaseURL in firebase.yml
 check_config <- function(config){
-  if(config$database$apiKey == "" && config$database$projectID == "" && config$database$databaseURL == "")
-    stop("Complete the config file: firebase.yml")
-  invisible()
+  if(config$database$apiKey == "" && config$database$projectId == "" && config$database$databaseURL == "") {
+    cli::cli_alert("Complete the config file: firebase.yml")
+  } else {
+  invisible() }
 }
 
 

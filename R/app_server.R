@@ -38,7 +38,7 @@ app_server <- function( input, output, session, abcd = abcd()) {
   ### Location Output ###
   
   output$lat <- renderText({
-    paste("Latitude:", input$long)
+    paste("Latitude:", input$lat)
   })
   
   output$long <- renderText({
