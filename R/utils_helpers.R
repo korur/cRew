@@ -8,7 +8,7 @@ ccc = c('fever', 'cough', 'breath', 'home', "goout", 'gowork', 'mask', 'lat', 'l
 if (file.exists("~/workingdirectory/CoronaOutbreak/douhavefever/_firebase.yml")) { 
   config_file <- yaml::read_yaml("~/workingdirectory/CoronaOutbreak/douhavefever/_firebase.yml") 
 } else { 
-  config_file <- yaml::read_yaml("etc/_firebase.yml")
+  config_file <- yaml::read_yaml("/etc/_firebase.yml")
 }
 
 # Create config
