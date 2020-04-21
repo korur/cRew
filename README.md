@@ -101,12 +101,15 @@ the app are calculated by the users who enter values thus can be biased.
 remotes::install_github("korur/cRew")
 ```
 
-## How to run
+## Set up and run
 
 The code for the app is available as an R package cRew. You can deploy
 and connect to your own database and run it with your modifications.
 
 ``` r
+# Setting up with your firebase database
+firebase::create_config(api_key = "yourfirebase apiKey, project_id = "your firebase projectId")
+databaseURL <- "your firebase databaseURL"
 # Run the app
 cRew::run_app()
 ```
