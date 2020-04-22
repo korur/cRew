@@ -61,7 +61,7 @@ app_ui <- function(request) {
               id = 'tabs',
             shinyMobile::f7Tab(firebase::useFirebase(), # import dependencies,
                                firebase::useFirebaseUI(), 
-                tabName = "Usage Info",
+                tabName = "Home",
                 icon = shinyMobile::f7Icon("rocket", old = FALSE),
                 active = TRUE,
                 swipeable = TRUE,

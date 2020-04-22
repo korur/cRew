@@ -5,8 +5,23 @@
 #' @import shiny
 #' @noRd
 app_server <- function( input, output, session, abcd = abcd()) {
-  # List the first level callModules here
+  ## sever
+  sever::sever(
+    tagList(
+      h1("Whoops!"),
+      p("It looks like you were disconnected"),
+      shiny::tags$button(
+        "Reload",
+        style = "color:#000;background-color:#fff;",
+        class = "button button-raised",
+        onClick = "location.reload();"
+      )
+    ),
+    bg_color = "#000"
+  )
 
+  ## firebaseUI
+  
   f <- firebase::FirebaseUI$
     new()$ # instantiate
     set_providers( # define providers
@@ -122,6 +137,6 @@ app_server <- function( input, output, session, abcd = abcd()) {
     shinyjs::hide("form")
     shinyjs::show("thankyou_msg")
   })
-  Sys.sleep(1)
+  Sys.sleep(1.8)
   waiter::waiter_hide()
 }
