@@ -14,9 +14,11 @@
 ## Fill the DESCRIPTION ----
 ## Add meta data about your application
 golem::fill_desc(
-  pkg_name = "CREW", # The Name of the package containing the App 
+  pkg_name = "cRew", # The Name of the package containing the App 
   pkg_title = "Coronavirus Early Warning System", # The Title of the package containing the App 
-  pkg_description = "The app tracks local changes with viral symptoms to determine risk regions or people at risk", # The Description of the package containing the App 
+  pkg_description = "coRanavirus early-warning (cRew) App tracks Covid-19 / flu like disease symptoms in real-time. The goal of cRew is to map in real-time healthy and symptomatic people. As users enter data about their health status, the app monitors temporal and spatial changes and estimates sudden increases or decreases on local risks. Experimental use only.
+User input parameters are based on health (fever, coughing, breathing problems), behavioral (such as going outside, staying home and wearing mask) and location based.
+The app is built with shinyMobile & firebase, echarts4r and fireData", # The Description of the package containing the App 
   author_first_name = "Serdar", # Your First Name
   author_last_name = "Korur", # Your Last Name
   author_email = "serdar.korur@gmail.com", # Your Email

@@ -1,12 +1,10 @@
-Package: CREW
-Title: An Amazing Shiny App
+Package: cRew
+Title: Coronavirus Early Warning System
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "firstname",
-           family = "lastname",
-           role = c("aut", "cre"),
-           email = "your@email.com")
-Description: What the package does (one paragraph).
+Authors@R: person('Serdar', 'Korur', email = 'serdar.korur@gmail.com', role = c('cre', 'aut'))
+Description: coRanavirus early-warning (cRew) App tracks Covid-19 / flu like disease symptoms in real-time. The goal of cRew is to map in real-time healthy and symptomatic people. As users enter data about their health status, the app monitors temporal and spatial changes and estimates sudden increases or decreases on local risks. Experimental use only.
+ User input parameters are based on health (fever, coughing, breathing problems), behavioral (such as going outside, staying home and wearing mask) and location based.
+ The app is built with shinyMobile & firebase, echarts4r and fireData
 License: What license is it under?
 Imports: 
     config,
@@ -33,8 +31,10 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
-Remotes:  
+Remotes: 
     RinteRface/shinyMobile,
     JohnCoene/sever,
     paulsp94/fireData,
     JohnCoene/countup
+URL: https://github.com/korur/cRew
+BugReports: https://github.com/korur/cRew/issues
