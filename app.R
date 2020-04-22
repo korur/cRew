@@ -4,4 +4,4 @@
 
 pkgload::load_all()
 options( "golem.app.prod" = TRUE)
-CREW::run_app() # add parameters here (if any)
+cRew::run_app() # add parameters here (if any)
