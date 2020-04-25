@@ -2,6 +2,14 @@
 output: github_document
 ---
 
+<div align="center">
+
+<p align="center">
+  <img src="inst/app/www/cRew_iphone.png"  align=center>
+</p>
+
+</div align="center">
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
@@ -13,7 +21,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Join the #cRew
+## Join the cRew
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -29,9 +37,9 @@ The app is built with [shinyMobile](https://rinterface.github.io/shinyMobile/) &
 
 ## About
 
-The app uses Google firebase authentication. This ensures that only authenticated users are able to interact with the app. Firebase authentication is established through the functions of [firebase R package](https://firebase.john-coene.com/) from John Coene. 
+The app uses Google firebase authentication. This ensures that only authenticated users are able to interact with the app. Firebase authentication and User specific data access is established through the [firebase R package](https://firebase.john-coene.com/) from John Coene and setting up firebase Database rules [(More information)](https://firebase.google.com/docs/database/security/quickstart?authuser=0).
 
-Other features include:
+Features:
 
 * User data are saved to Google **Firebase real-time database.**
   * as collections **in user-specific folders.** This is achieved through the use of variables created during the authentication.
@@ -81,7 +89,7 @@ For example following rules allow only authenticated users to can read data and 
 
 ## cRew App 
 
-[cRew symptom Tracker](http://tools.dataatomic.com/shiny/cRew) 
+You can access the app here >> [cRew symptom Tracker](http://tools.dataatomic.com/shiny/cRew) 
 
 The app is for experimental purposes and the disease risk estimation via the app are calculated by the users who enter values thus can be biased.
 

@@ -1,7 +1,17 @@
 
+<div data-align="center">
+
+<p align="center">
+
+<img src="inst/app/www/cRew_iphone.png"  align=center>
+
+</p>
+
+</div>
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Join the \#cRew
+## Join the cRew
 
 <!-- badges: start -->
 
@@ -30,10 +40,12 @@ The app is built with
 
 The app uses Google firebase authentication. This ensures that only
 authenticated users are able to interact with the app. Firebase
-authentication is established through the functions of [firebase R
-package](https://firebase.john-coene.com/) from John Coene.
+authentication and User specific data access is established through the
+[firebase R package](https://firebase.john-coene.com/) from John Coene
+and setting up firebase Database rules [(More
+information)](https://firebase.google.com/docs/database/security/quickstart?authuser=0).
 
-Other features include:
+Features:
 
   - User data are saved to Google **Firebase real-time database.**
       - as collections **in user-specific folders.** This is achieved
@@ -91,7 +103,8 @@ database.
 
 ## cRew App
 
-[cRew Tracker](http://tools.dataatomic.com/shiny/cRew)
+You can access the app here \>\> [cRew symptom
+Tracker](http://tools.dataatomic.com/shiny/cRew)
 
 The app is for experimental purposes and the disease risk estimation via
 the app are calculated by the users who enter values thus can be biased.
@@ -104,7 +117,8 @@ remotes::install_github("korur/cRew")
 ## Set up and run
 
 The code for the app is available as an R package cRew. You can deploy
-and connect to your own database and run it with your modifications.
+and connect to your own database and run it with your modifications and
+track other symptoms/diseases.
 
 ``` r
 # Setting up with your firebase database
