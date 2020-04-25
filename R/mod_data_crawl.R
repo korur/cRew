@@ -21,7 +21,7 @@ mod_data_crawl_server <- function(input, output, session, f, tkn){
   # Accesing all data
   abcd <- eventReactive(f$req_sign_in(),{
     
-  # Unnest User lists
+    # Unnest User lists
   aa <- fireData::download(projectURL = databaseURL, fileName = "fire", token=tkn())
   aza <- dplyr::tibble(slots = aa)
   abc <- aza %>%

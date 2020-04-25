@@ -39,7 +39,7 @@ app_ui <- function(request) {
                          ),#f7init
             shinyMobile::f7TabLayout(
               navbar = shinyMobile::f7Navbar(
-                title = "About",
+                title = h3("cRew", style = "text-align:left", color="#000000"),
                 hairline = TRUE,
                 shadow = TRUE,
                 left_panel = TRUE,
@@ -64,7 +64,16 @@ app_ui <- function(request) {
                 tabName = "Home",
                 icon = shinyMobile::f7Icon("rocket", old = FALSE),
                 active = TRUE,
-                swipeable = TRUE,
+                swipeable = TRUE, 
+                shinyMobile::f7Card(shinyMobile::f7Button("togglePopup", "How to use"),shinyMobile::f7Popup(
+                  id = "popup1",
+                  title = h2("How to use cRew"),
+                  shinyMobile::f7Text("text", h3("Login"), "Get access via gmail or twitter"),
+                  shinyMobile::f7Text("text", h3("Survey"), "Fill in your data and submit"),
+                  shinyMobile::f7Text("text", h3("Maps"), "View your local map and risk analyses"),
+                  shinyMobile::f7Text("text", h3("Resubmit"), "Submit again when you use the app"),
+                  shinyMobile::f7Text("text", h3("History"), "View your past entries on history tab")
+                )),
                 shinyMobile::f7Card(tags$script('
   $(document).ready(function () {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -91,9 +100,9 @@ app_ui <- function(request) {
                 shinyMobile::f7Card(mod_toggleslot_ui("toggleslot_ui_6", "gowork", "I go to work", "blue")),
                 shinyMobile::f7Card(mod_toggleslot_ui("toggleslot_ui_7", "mask", "I wear mask", "blue")),
 shinyMobile::f7Card(title="Location Information", shinyMobile::f7Col(width = 2,color="blue",
-                                          verbatimTextOutput("lat"),
+                                          textOutput("lat"),
                                           verbatimTextOutput("long"),
-                                          verbatimTextOutput("usercon"),
+                                          textOutput("usercon"),
 )),               
 firebase::reqSignin(shinyMobile::f7Card(shinyMobile::f7Col(width= 2, shinyMobile::f7Button(inputId ='save_inputs', label='Send',  color = NULL,
                                           fill = TRUE,
@@ -149,7 +158,7 @@ shinyMobile::f7Tab(
     subtitle = "Click to open",
     fullBackground = FALSE,
     color="red",
-    h3("You may want to add your data on a daily basis or at other locations you visited (e.g grocery, work) so the app can achieve better estimation accuracy.", style = "color:white")
+    h3("Add your data on a daily basis or submit from other locations you are visiting (e.g grocery, work) so the app can achieve better estimation accuracy.", style = "color:white")
     
   ),
   shinyMobile::f7ExpandableCard(
@@ -158,11 +167,11 @@ shinyMobile::f7Tab(
     subtitle = "Click to open",
     fullBackground = FALSE,
     color = "orange", 
-    h3("Updates about the app will appear here", style = "color:white")
+    h3("Updates about the app will appear here soon", style = "color:white")
   )
   ),shinyMobile::f7Tab(
     tabName = "My history",
-    icon = shinyMobile::f7Icon("waveform", old = FALSE),
+    icon = shinyMobile::f7Icon("book-medical", old = FALSE),
     active = FALSE,
     swipeable = TRUE, shinyMobile::f7Row(shinyMobile::f7Card(mod_data_crawl_ui("data_crawl_ui_1"))))#tabend
 

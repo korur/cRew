@@ -20,12 +20,21 @@ app_server <- function( input, output, session, abcd = abcd()) {
     bg_color = "#000"
   )
 
+  
+  ## how to use
+  
+  output$popupContent <- renderPrint(input$text)
+  
+  observeEvent(input$togglePopup, {
+    shinyMobile::f7TogglePopup(id = "popup1")
+  })
+  
   ## firebaseUI
   
   f <- firebase::FirebaseUI$
     new()$ # instantiate
     set_providers( # define providers
-      email = TRUE, 
+      twitter = TRUE, 
       google = TRUE
     )$
     set_tos_url("https://dataatomic.com/terms/"
@@ -61,14 +70,21 @@ app_server <- function( input, output, session, abcd = abcd()) {
   }) 
   
   
-  ### User email address will be shown in Home screen
-  output$usercon <- eventReactive(f$req_sign_in(), {   
+  ### User email address will be shown in Home screen if signed via gmail
+  output$usercon <- eventReactive(f$req_sign_in(), { 
+    if(f$signed_in$response$providerData[[1]]$providerId == "twitter.com"){ 
+      paste0("You are logged in via:","\n", "twitter.com")
+    } else {
     paste0("You are logged in as:","\n", f$signed_in$response$email)
+    }
   })
   
   ### User email as reactive variable
   usercon <- eventReactive(f$req_sign_in(), {   
-    f$signed_in$response$email
+    if(f$signed_in$response$providerData[[1]]$providerId == "twitter.com"){ 
+      "twitter"
+    } else {
+        f$signed_in$response$email }
   })
   
   ### Timestamp when user clicks "send" button

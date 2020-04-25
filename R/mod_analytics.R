@@ -15,8 +15,7 @@ mod_analytics_ui <- function(id){
                        shinyMobile::f7Card(
                          echarts4r::echarts4rOutput(ns("risk2"))
                        )#f7Card
-    )#f7col
-    ,
+    ),#f7col
     
     shinyMobile::f7Col(h2("Change in local risk (last 24h)",style="text-align: center;"),
                        shinyMobile::f7Card(
