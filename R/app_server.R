@@ -8,7 +8,7 @@ app_server <- function( input, output, session, abcd = abcd()) {
   ## sever
   sever::sever(
     tagList(
-      h1("Whoops!"),
+      h1("C'est la vie!"),
       p("It looks like you were disconnected"),
       shiny::tags$button(
         "Reload",
@@ -29,6 +29,7 @@ app_server <- function( input, output, session, abcd = abcd()) {
     shinyMobile::f7TogglePopup(id = "popup1")
   })
   
+  
   ## firebaseUI
   
   f <- firebase::FirebaseUI$
@@ -43,13 +44,50 @@ app_server <- function( input, output, session, abcd = abcd()) {
     )$
     launch() # launch
   
+  ## Login for full features
+  
+  output$txtfull <- renderText({
+    "Login to enable personalized features"
+  })
+  output$welcome <- renderText({
+    "Welcome to cRew!"
+  })
+  
+  ### Set up reactiveVal for enabling / disabling an UI output
+  value <- reactiveVal(0)
+  
+  observeEvent(f$req_sign_in(),{
+    newValue <- value() + 1
+    value(newValue)
+  })
+  
+  output$value <- reactive({
+    value()
+  })
+  
+  output$loginforfullfeatures <- renderUI({
+    if(value()<1) {
+                         shinyMobile::f7Card(textOutput("txtfull"))#f7Card
+    } else {
+  
+                         shinyMobile::f7Card(textOutput("welcome"))#f7Card
+    }
+  })
   
   lat <- reactive({
-    input$lat
+   if(!is.null(input$lat)){
+     input$lat
+   } else {
+     71.00389
+   }
   })
   
   long <- reactive({
-    input$long
+    if(!is.null(input$long)){
+      input$long
+    } else {
+      -42.6
+    }
   })
   
   zoomin <- reactive({
@@ -62,11 +100,11 @@ app_server <- function( input, output, session, abcd = abcd()) {
   ### Location Output ###
   
   output$lat <- renderText({
-    paste("Latitude:", input$lat)
+    paste("Latitude:", lat())
   })
   
   output$long <- renderText({
-    paste("Longitude:", input$long)
+    paste("Longitude:", long())
   }) 
   
   
@@ -132,16 +170,17 @@ app_server <- function( input, output, session, abcd = abcd()) {
  # Saving user specific inputs. g_uid() and tkn() ensures only authenticated users can read/write and only to their own folders.
   inp2 <- observeEvent(input$save_inputs, {
     # Define inputs to save
-    inputs_to_save <- c('fever', 'cough', 'breath', 'home', "goout", 'gowork', 'mask', 'lat', 'long')
+    inputs_to_save <- c('fever', 'cough', 'breath', 'home', "goout", 'gowork', 'mask')
     # Declare inputs
     inputs <- NULL
     # Append all inputs before saving to folder
     for(input.i in inputs_to_save){
-      inputs <- append(inputs, input[[input.i]])
+      inputs <- append(inputs, as.numeric(input[[input.i]]))
     }
-    inputs <- append(inputs, c(timecon(), usercon()))
+    inputs <- append(inputs, c(lat(), long(), timecon(), usercon() ) )
     # Inputs data.frame
-    inputs_data_frame <- data.frame(inputId = c(inputs_to_save, c("timecon","usercon")), value = inputs)
+    inputs_data_frame <- data.frame(inputId = c(inputs_to_save, c("lat", "long", "timecon","usercon")), value = inputs)
+    
     # Save Inputs
     fireData::upload(x = inputs_data_frame, projectURL = databaseURL, directory = paste0("fire/",g_uid()), token=tkn())
     return(inputs_data_frame)
@@ -153,6 +192,8 @@ app_server <- function( input, output, session, abcd = abcd()) {
     shinyjs::hide("form")
     shinyjs::show("thankyou_msg")
   })
+  
+
   Sys.sleep(1.8)
   waiter::waiter_hide()
 }

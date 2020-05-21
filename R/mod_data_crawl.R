@@ -56,10 +56,13 @@ mod_data_crawl_server <- function(input, output, session, f, tkn){
     
     aa_user <- fireData::download(projectURL = databaseURL, fileName = paste0("fire/", f$signed_in$response$uid), token=tkn())
     
-    if(is.null(aa_user)) { "if you have submitted your data, it will be available here next time you sign in"}
-      else {
-    for(i in 1:length(aa_user)){
+    if(is.null(aa_user)) { 
+      "If you have submitted your data, it will be available here next time you sign in"
+    } else {
+      
+    for(i in 1:length(aa_user)) {
       abc_user[[i]] <- aa_user[[i]]$value
+    
     }
     
     abc_user <- as.data.frame(do.call(rbind,abc_user))
@@ -75,11 +78,12 @@ mod_data_crawl_server <- function(input, output, session, f, tkn){
       tidyr::gather(toggle, input, -rowname) %>% 
       tidyr::pivot_wider(names_from=rowname, values_from=input)
     
-    if(ncol(abc_user) < 8) { abc_user <- abc_user } else {abc_user <- abc_user[,1:9]}
+    if(ncol(abc_user) < 9) { 
+      abc_user <- abc_user
+    } else { 
+        abc_user <- abc_user[,1:9]}
     
       }
-    
-    
     
    ######## 
   })

@@ -16,4 +16,3 @@ loader <- tagList(
 if(!exists("databaseURL")){
   cli::cli_alert("set up your firebase databaseURL as in databaseURL <- 'https://xxxxx.firebaseio.com'")
 }
- 
