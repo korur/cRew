@@ -7,6 +7,15 @@
 
 </p>
 
+<p align="center">
+
+## Watch a DEMO on youTube
+
+[![cRew
+DEMO](https://img.youtube.com/vi/Fobss1YFRFI/0.jpg)](https://www.youtube.com/watch?v=Fobss1YFRFI)
+
+</p>
+
 </div>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->

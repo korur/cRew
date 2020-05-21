@@ -2,10 +2,17 @@
 output: github_document
 ---
 
+
 <div align="center">
+
 
 <p align="center">
   <img src="inst/app/www/cRew_iphone.png"  align=center>
+</p>
+
+<p align="center">
+## Watch a DEMO on youTube   
+ [![cRew DEMO](https://img.youtube.com/vi/Fobss1YFRFI/0.jpg)](https://www.youtube.com/watch?v=Fobss1YFRFI)
 </p>
 
 </div align="center">
